@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Traffic Simulator Map</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      canvas.panning {
+        cursor: grabbing !important;
+      }
+      canvas.interactive {
+        cursor: grab;
+      }
+      /* Smooth HUD backdrop blur */
+      .hud-card {
+        background: rgba(24, 24, 27, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      /* Hide scrollbars for clean full-screen canvas layout */
+      body,
+      html {
+        overflow: hidden;
+        user-select: none;
+      }
+    </style>
+  </head>
+  <body class="bg-zinc-950 text-zinc-100 h-screen w-screen relative font-sans">
+    <!-- Navigation & Zoom Controls (Bottom Right) -->
+    <div class="absolute bottom-6 right-6 z-20 flex flex-col gap-2">
+      <div class="hud-card p-2 rounded-xl shadow-2xl flex flex-col gap-1.5">
+        <button
+          id="btn-zoom-in"
+          title="Zoom In"
+          class="w-10 h-10 rounded-lg bg-zinc-800 hover:bg-zinc-700 active:bg-zinc-600 text-zinc-100 flex items-center justify-center transition"
+        >
+          <i class="fa-solid fa-magnifying-glass-plus"></i>
+        </button>
+        <button
+          id="btn-zoom-out"
+          title="Zoom Out"
+          class="w-10 h-10 rounded-lg bg-zinc-800 hover:bg-zinc-700 active:bg-zinc-600 text-zinc-100 flex items-center justify-center transition"
+        >
+          <i class="fa-solid fa-magnifying-glass-minus"></i>
+        </button>
+        <button
+          id="btn-reset-view"
+          title="Reset View & Center"
+          class="w-10 h-10 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 border border-amber-500/30 flex items-center justify-center transition mt-1"
+        >
+          <i class="fa-solid fa-crosshairs"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Instruction Hint Overlay -->
+    <div
+      class="absolute top-6 right-6 z-10 hidden sm:flex flex-col gap-1.5 hud-card px-3 py-2 rounded-lg text-xs text-zinc-400"
+    >
+      <span class="flex items-center gap-1"
+        ><i class="fa-solid fa-hand-pointer text-amber-400"></i> Drag to Pan</span
+      >
+      <span class="flex items-center gap-1"
+        ><i class="fa-solid fa-arrows-up-down text-amber-400"></i> Scroll to Zoom</span
+      >
+    </div>
+
+    <!-- Main Canvas Element -->
+    <div id="canvas-container" style="width: 1100px; height: 1100px">
+      <canvas id="gridCanvas"></canvas>
+    </div>
+  </body>
+</html>
+<script type="module" src="/src/main.ts"></script>
