@@ -13,9 +13,9 @@ export function findIndexOfClosestRoad(val: number, roads: number[]): number {
   const len = roads.length;
   if (len === 0) return 0;
   const firstRoad = get(0, roads);
-  const lastRoad = get(len -1, roads);
+  const lastRoad = get(len - 1, roads);
 
-  if (val <= firstRoad) return 0;  
+  if (val <= firstRoad) return 0;
   if (val >= lastRoad) return len - 1;
 
   let low = 0;
@@ -49,7 +49,6 @@ export function moveCars(state: State, mapConfig: MapConfig): void {
 }
 
 function get(index: number, roads: number[]): number {
-
   const value = roads[index];
 
   if (value === undefined) {
