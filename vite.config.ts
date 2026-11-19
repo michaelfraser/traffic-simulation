@@ -1,12 +1,12 @@
 /// <reference types="vitest/config" />
 import { defineConfig } from "vite";
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   server: {
     port: 3000,
     open: true,
   },
-  base: "https://michaelfraser.github.io/traffic-simulation/",
+  base: command === "serve" ? "/" : "https://michaelfraser.github.io/traffic-simulation/",
   build: {
     target: "esnext",
     outDir: "dist",
@@ -20,4 +20,4 @@ export default defineConfig({
       exclude: ["node_modules/", "tests/"],
     },
   },
-});
+}));
