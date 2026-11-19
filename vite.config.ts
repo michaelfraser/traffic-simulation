@@ -6,6 +6,7 @@ export default defineConfig({
     port: 3000,
     open: true,
   },
+  base: "https://michaelfraser.github.io/traffic-simulation/",
   build: {
     target: "esnext",
     outDir: "dist",
